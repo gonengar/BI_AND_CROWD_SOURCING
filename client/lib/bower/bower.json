@@ -1,0 +1,19 @@
+{
+  "name": "bower link angular_material",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "*",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+    "angular-material": "~0.10.0",
+    "angular-google-chart": "~0.0.11"
+  },
+  "resolutions": {
+    "angular": "^1.3.0 || >1.4.0-beta.0"
+  }
+}

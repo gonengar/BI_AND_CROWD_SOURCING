@@ -1,0 +1,34 @@
+
+<project></project>
+user id is: {{userId()}}
+<md-content layout="row">
+    <md-list>
+        <md-toolbar class="md-theme-light">
+            <h3 class="md-toolbar-tools">
+                <span> Number of queries sent: {{currentUserQueries.length}}</span>
+            </h3>
+        </md-toolbar>
+        <md-list-item class="md-3-line" ng-repeat="query in currentUserQueries">
+            <div class="md-list-item-text" layout="row">
+                <md-button class="md-raised md-warn" ng-click="remove(query)">Remove</md-button>
+                <h3>{{query.question || "No question description was inserted"}}</h3>
+                <md-button href="/queries/{{query._id}}">link</md-button>
+            </div>
+        </md-list-item>
+    </md-list>
+    <md-list>
+        <md-toolbar class="md-theme-light">
+            <h3 class="md-toolbar-tools">
+                <span> Number of queries sent by other users: {{otherUserQueries.length}}</span>
+            </h3>
+        </md-toolbar>
+        <md-list-item class="md-3-line" ng-repeat="query in otherUserQueries">
+            <div class="md-list-item-text" layout="row">
+                <h3>{{query.question || "No question description was inserted"}}</h3>
+                <md-button href="/queries/{{query._id}}">link</md-button>
+                <md-button  ng-click="showAnswer($event, query)" class="md-raised md-primary">Answer</md-button>
+                <md-content ng-show="showUserAnswer(query)">Answer: {{userAnswer(query)}}</md-content>
+            </div>
+        </md-list-item>
+    </md-list>
+</md-content>

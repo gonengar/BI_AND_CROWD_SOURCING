@@ -1,0 +1,5 @@
+This directory was named a in order to be loaded first of all other folders.
+That's because components folder contain our components and those components need to be created on a module.
+
+As those components are inside folders - they will be loaded first because of meteor's way of loading files and therefore -
+those files can't be loaded as the "socially" module hasn't been loaded yet and therefore they reside on another module.

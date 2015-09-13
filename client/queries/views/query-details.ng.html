@@ -1,0 +1,20 @@
+<!--Here you will see and change the details of the query:-->
+
+<input ng-model="query.range">
+<input ng-model="query.question">
+<label>Is public</label>
+<input type="checkbox" ng-model="query.public">
+
+<ul>
+Answers:
+<li ng-repeat="answer in query.answers">
+    <div>{{ answer }}</div>
+</li>
+</ul>
+
+<ul>
+  Users:
+  <li ng-repeat="user in users">
+    <div>{{ user.emails[0].address }}</div>
+  </li>
+</ul>
