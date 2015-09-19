@@ -22,7 +22,7 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
                         },
                         question: scope.question,
                         owner: Meteor.userId(),
-                        answers: []
+                        answers: {}
                     };
                     queries.push(query);
                 }, function() {})

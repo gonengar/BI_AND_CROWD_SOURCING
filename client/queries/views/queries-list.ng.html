@@ -26,8 +26,12 @@ user id is: {{userId()}}
             <div class="md-list-item-text" layout="row">
                 <h3>{{query.question || "No question description was inserted"}}</h3>
                 <md-button href="/queries/{{query._id}}">link</md-button>
-                <md-button  ng-click="showAnswer($event, query)" class="md-raised md-primary">Answer</md-button>
-                <md-content ng-show="showUserAnswer(query)">Answer: {{userAnswer(query)}}</md-content>
+                <!--<md-button  ng-click="showAnswer($event, query)" class="md-raised md-primary">Answer</md-button>-->
+                <md-input-container>
+                    <label>Answer:{{userAnswer(query)}}</label>
+                    <input ng-model="answer">
+                </md-input-container>
+                <md-button ng-click="saveQuery(query, answer)" class="md-raised md-primary">Save</md-button>
             </div>
         </md-list-item>
     </md-list>
