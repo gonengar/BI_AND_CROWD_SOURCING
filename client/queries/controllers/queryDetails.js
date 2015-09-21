@@ -2,4 +2,7 @@ angular.module("socially").controller("QueryDetailsCtrl", ['$scope', '$statePara
     function ($scope, $stateParams, $meteor) {
         $scope.query = $meteor.object(Queries, $stateParams.queryId).subscribe('queries');
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+        $scope.isUserQuery = function(userId){
+            return userId == Meteor.userId();
+        };
     }]);

@@ -10,7 +10,7 @@ Answers:
 <li ng-repeat="answer in query.answers" layout="column">
     <div layout="row">
     <div>{{ answer.answer }}</div>
-        <feedback-stars answer="answer"></feedback-stars>
+        <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
     </div>
 </li>
 </ul>
