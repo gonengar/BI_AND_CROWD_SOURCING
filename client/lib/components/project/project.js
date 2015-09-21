@@ -24,8 +24,10 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
                         owner: Meteor.userId(),
                         answers: {}
                     };
-                    queries.push(query);
-                }, function() {})
+
+                    $meteor.call('saveQuery', query);
+                }, function () {
+                })
             };
 
 

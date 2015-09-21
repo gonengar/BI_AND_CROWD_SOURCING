@@ -76,9 +76,13 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
                 feedback : 0
             };
 
-            query.answers[$scope.userId()] = answerWithFeedback;
+            //query.answers[$scope.userId()] = answerWithFeedback;
+            //$meteor.call('saveAnswer', query, answerWithFeedback, $scope.userId());
+            $meteor.call('date').then(function(date){
+                answerWithFeedback.answerDate = date;
+                query.answers[$scope.userId()] = answerWithFeedback;
+            });
         };
-
 }]);
 
 

@@ -4,12 +4,14 @@
 <input ng-model="query.question">
 <label>Is public</label>
 <input type="checkbox" ng-model="query.public">
+<br>
 
+Query created on {{formatDate(query.createDate)}}
 <ul>
 Answers:
 <li ng-repeat="answer in query.answers" layout="column">
     <div layout="row">
-    <div>{{ answer.answer }}</div>
+    <div>{{ answer.answer }}</div> Answer answered on {{formatDate(answer.answerDate)}}
         <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
     </div>
 </li>
