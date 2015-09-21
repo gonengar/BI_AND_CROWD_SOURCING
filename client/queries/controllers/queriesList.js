@@ -56,7 +56,14 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         };
 
         $scope.userAnswer = function(query){
-            return query.answers[$scope.userId()];
+            var answer =  query.answers[$scope.userId()];
+            if (angular.isUndefined(answer)){
+                return '';
+            }
+            else
+            {
+                return answer.answer;
+            }
         };
 
         $scope.showUserAnswer = function(query) {
@@ -64,7 +71,12 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         };
 
         $scope.saveQuery = function(query, answer){
-            query.answers[$scope.userId()] = answer;
+            var answerWithFeedback = {
+              answer : answer,
+                feedback : 0
+            };
+
+            query.answers[$scope.userId()] = answerWithFeedback;
         };
 
 }]);
