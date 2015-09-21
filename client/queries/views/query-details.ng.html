@@ -7,10 +7,14 @@
 
 <ul>
 Answers:
-<li ng-repeat="answer in query.answers">
-    <div>{{ answer }}</div>
+<li ng-repeat="answer in query.answers" layout="column">
+    <div layout="row">
+    <div>{{ answer.answer }}</div>
+        <feedback-stars answer="answer"></feedback-stars>
+    </div>
 </li>
 </ul>
+
 
 <ul>
   Users:
