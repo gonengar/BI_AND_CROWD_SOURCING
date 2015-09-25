@@ -6,15 +6,15 @@ angular.module('socially').service('selectorService', function () {
 
         this.getFirstObject = function () {
             return firstObject;
-        }
+        };
 
         this.getSecondObject = function () {
             return secondObject;
-        }
+        };
 
         this.getCounter = function () {
             return counter;
-        }
+        };
 
         this.addObject = function (object) {
             if (counter === 0) {
