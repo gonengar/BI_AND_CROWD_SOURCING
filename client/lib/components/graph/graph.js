@@ -150,6 +150,7 @@ angular.module('socially').directive('graph', function () {
                             "count": 10
                         }
                     },
+                    selectionMode: 'multiple',
                     "hAxis": {
                         "title": "Date"
                     },

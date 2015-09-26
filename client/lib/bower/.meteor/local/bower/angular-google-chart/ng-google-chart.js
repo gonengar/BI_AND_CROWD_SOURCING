@@ -197,7 +197,7 @@
                                         console.log(err);
                                     });
                                     google.visualization.events.addListener($scope.chartWrapper, 'select', function () {
-                                        var selectedItem = $scope.chartWrapper.getChart().getSelection()[0];
+                                        var selectedItem = $scope.chartWrapper.getChart().getSelection();
                                         $scope.$apply(function () {
                                             if ($attrs.select) {
                                                 console.log('Angular-Google-Chart: The \'select\' attribute is deprecated and will be removed in a future release.  Please use \'onSelect\'.');

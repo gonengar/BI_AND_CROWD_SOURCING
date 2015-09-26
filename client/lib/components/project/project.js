@@ -1,4 +1,4 @@
-angular.module('socially').directive('project', function (selectorService, $mdDialog, $meteor, $rootScope) {
+angular.module('socially').directive('project', function (selectorService, $mdDialog, $meteor) {
     return {
         restrict: 'E',
         templateUrl: 'client/lib/components/project/project.ng.html',
@@ -9,17 +9,14 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
                 var confirm = $mdDialog.confirm()
                     .parent(angular.element(document.body))
                     .title('Would you like to query the data?')
-                    .content('The selected range ' + selectorService.getFirstObject().column + ',' + selectorService.getSecondObject().column + ' will be sent to the server for investigation')
+                    .content('The selected range ' + selectorService.getSelectedObjects() + ' will be sent to the server for investigation')
                     .ok('Please do it!')
                     .cancel('Sounds like a scam')
                     .targetEvent(ev);
 
                 $mdDialog.show(confirm).then(function () {
                     var query = {
-                        range: {
-                            firstObject: selectorService.getFirstObject().column,
-                            secondObject: selectorService.getSecondObject().column
-                        },
+                        selectedObjects: selectorService.getSelectedObjects(),
                         question: scope.question,
                         owner: Meteor.userId(),
                         answers: {}
@@ -32,7 +29,7 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
 
 
             scope.isDisabled = function () {
-                return selectorService.getCounter() != 2;
+                return selectorService.getCounter() < 2;
             }
         }
     };

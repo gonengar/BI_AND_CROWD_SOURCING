@@ -1,35 +1,17 @@
 angular.module('socially').service('selectorService', function () {
-        var counter, firstObject, secondObject;
-        counter = 0;
-        firstObject = undefined;
-        secondObject = undefined;
-
-        this.getFirstObject = function () {
-            return firstObject;
-        };
-
-        this.getSecondObject = function () {
-            return secondObject;
-        };
+        var objects = [];
 
         this.getCounter = function () {
-            return counter;
+            return objects.length;
         };
 
-        this.addObject = function (object) {
-            if (counter === 0) {
-                firstObject = object;
-                counter++;
-            }
-            else if (counter === 1) {
-                secondObject = object;
-                counter++;
-            }
-            else if (counter === 2) {
-                counter = 1;
-                firstObject = object;
-            }
-        }
+        this.getSelectedObjects = function(){
+            return objects;
+        };
+
+        this.addObject = function (selectedObjects) {
+            objects = selectedObjects;
+        };
     }
 );
 
