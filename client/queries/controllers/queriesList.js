@@ -1,5 +1,5 @@
 angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '$mdDialog',
-    function ($scope, $meteor, $mdDialog) {
+    function ($scope, $meteor) {
 
         $scope.answer = '';
 
@@ -68,6 +68,11 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
 
         $scope.showUserAnswer = function(query) {
             return angular.isDefined($scope.userAnswer(query));
+        };
+
+        $scope.showUserAnswer = function(query){
+            return Object.keys(query.answers).length < query.responders || angular.isDefined(query.answers[Meteor.userId()]);
+
         };
 
         $scope.saveQuery = function(query, answer){

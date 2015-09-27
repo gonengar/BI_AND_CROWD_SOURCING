@@ -19,6 +19,7 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
                         selectedObjects: selectorService.getSelectedObjects(),
                         question: scope.question,
                         owner: Meteor.userId(),
+                        responders: scope.responders || 0,
                         answers: {}
                     };
 

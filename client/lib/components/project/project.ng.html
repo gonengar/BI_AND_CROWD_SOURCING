@@ -1,6 +1,10 @@
 <md-button  ng-disabled="isDisabled()" ng-click="showConfirm($event)" class="md-raised md-primary">Query Data</md-button>
 <md-input-container>
-    <label>Title</label>
+    <label>Number Of Responders Required</label>
+    <input ng-model="responders">
+</md-input-container>
+<md-input-container>
+    <label>Question</label>
     <input ng-model="question">
 </md-input-container>
 <graph></graph>
