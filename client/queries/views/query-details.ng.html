@@ -1,7 +1,6 @@
-<!--Here you will see and change the details of the query:-->
-
-<input ng-model="query.range">
+<input ng-model="query.selectedObjects">
 <input ng-model="query.question">
+<graph ready-cb="putSelection(chart)"></graph>
 <label>Is public</label>
 <input type="checkbox" ng-model="query.public">
 <br>

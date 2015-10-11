@@ -2,6 +2,12 @@ angular.module("socially").controller("QueryDetailsCtrl", ['$scope', '$statePara
     function ($scope, $stateParams, $meteor) {
         $scope.query = $meteor.object(Queries, $stateParams.queryId).subscribe('queries');
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+        $scope.putSelection = function(chart){
+            console.log($scope.query.selectedObjects);
+            chart.getChart().setSelection($scope.query.selectedObjects);
+
+            console.log(chart.getChart().getSelection());
+        };
         $scope.isUserQuery = function(userId){
             return userId == Meteor.userId();
         };

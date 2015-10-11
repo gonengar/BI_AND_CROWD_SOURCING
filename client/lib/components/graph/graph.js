@@ -1,8 +1,13 @@
-angular.module('socially').directive('graph', function () {
+angular.module('socially').directive('graph', function ($parse) {
     return {
         restrict: 'E',
         templateUrl: 'client/lib/components/graph/graph.ng.html',
-        link: function (scope) {
+        link: function (scope, elem, attrs) {
+            scope.readyCb = $parse(attrs.readyCb);
+            scope.readyCbWrapper = function(chart) {
+                scope.readyCb(scope, { chart: chart});
+            };
+
             scope.chartObject = {
                 "type": "LineChart",
                 "displayed": true,
