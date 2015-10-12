@@ -1,24 +1,20 @@
-<input ng-model="query.selectedObjects">
-<input ng-model="query.question">
+Query: {{query.question}}
+<div layout="row">
+    <md-input-container flex>
+        <label>Rephrase Question?</label>
+        <input ng-model="newQuestion" md-detect-hidden="true" md-no-autogrow="true">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="rephrase()">OK</md-button>
+</div>
+
 <graph ready-cb="putSelection(chart)"></graph>
-<label>Is public</label>
-<input type="checkbox" ng-model="query.public">
-<br>
 Number Of Required Responders: {{query.responders}}
 <ul>
-Answers:
-<li ng-repeat="answer in query.answers" layout="column">
-    <div layout="row">
-    <div>{{ answer.answer }}</div>
-        <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
-    </div>
-</li>
-</ul>
-
-
-<ul>
-  Users:
-  <li ng-repeat="user in users">
-    <div>{{ user.emails[0].address }}</div>
-  </li>
+    <div ng-show="hasAnswers()">Answers:</div>
+    <li ng-repeat="answer in query.answers" layout="column">
+        <div layout="row">
+            <div>{{ answer.answer }}</div>
+            <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
+        </div>
+    </li>
 </ul>
