@@ -1,11 +1,11 @@
 <md-content layout="row" class="md-padding">
-    <md-tabs md-dynamic-height md-border-bottom flex="50">
+    <md-tabs md-dynamic-height md-border-bottom flex="55">
         <md-tab label="My Queries">
             <md-button class="md-primary" ng-click="createQuery($event)">Create Query</md-button>
             <md-list>
                 <md-list-item class="md-3-line" ng-repeat="query in currentUserQueries">
                     <div class="md-list-item-text" layout="column">
-                        <md-input-container style="width:90%">
+                        <md-input-container>
                             <textarea disabled
                                       style="color:black">{{query.question || "No question description was inserted"}}</textarea>
                         </md-input-container>
@@ -23,20 +23,20 @@
         </md-tab>
         <md-tab label="Other Users Queries">
             <div ng-repeat="query in otherUserQueries" ng-show="showUserAnswer(query)"
-                 class="md-whiteframe-1dp md-body-1">
+                 class="md-whiteframe-1dp md-body-2">
                 <div layout="column">
                     <h3>{{query.question}}</h3>
                     <div layout="row" layout-align="end center">
-                        <div ng-if="hasUserAnswered(query)" layout="column" flex="85">
-                            <div layout="row"><h3>My Answer:&nbsp;</h3>
-
-                                <h3 style="font-weight: normal;
-">{{userAnswer(query).answer}}</h3></div>
+                        <div ng-if="hasUserAnswered(query)" layout="column" flex>
+                            <div layout="row">
+                                <h3>My Answer:&nbsp;</h3>
+                                <h3 style="font-weight: normal">{{userAnswer(query).answer}}</h3>
+                            </div>
                             <div layout="row">&nbsp;&nbsp;&nbsp;
                                 <feedback-stars is-disabled="true" answer="userAnswer(query)"></feedback-stars>
                             </div>
                         </div>
-                        <div layout-align="end end">
+                        <div layout-align="center end" flex="15">
                             <md-button class="md-primary"
                                        ng-click="openGraph($event, query.selectedObjects, query)">Respond
                             </md-button>

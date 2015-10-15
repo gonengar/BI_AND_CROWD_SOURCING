@@ -1,23 +1,26 @@
-<div class="md-title">Query: {{query.question}}</div>
-<div layout="row">
-    <md-input-container flex="50">
-        <label>Rephrase Question?</label>
-        <input ng-model="newQuestion" md-detect-hidden="true" md-no-autogrow="true">
-    </md-input-container>
-    <md-button class="md-primary" ng-click="rephrase()">OK</md-button>
-</div>
-
+<md-content layout-padding>
+    <form layout="row">
+        <md-input-container flex="50">
+            <label class="md-title">Query</label>
+            <input name="description" required ng-model="newQuestion">
+        </md-input-container>
+        <md-button class="md-primary" ng-click="rephrase()">OK</md-button>
+    </form>
+    </md-content>
+<h2 class="md-body-2">Number Of Required Responders: {{query.responders}}</h2>
 <graph selected-objects="query.selectedObjects"></graph>
-Number Of Required Responders: {{query.responders}}
 <ul>
     <div ng-show="hasAnswers()" class="md-list-item-text"><h3>Answers:</h3></div>
-    <li ng-repeat="answer in query.answers" layout="column" flex="50">
+    <li ng-repeat="answer in query.answers" layout="column" flex="70">
         <div layout="row">
-            <md-input-container flex="90">
-                            <textarea disabled
-                                      style="color:black">{{answer.answer}}</textarea>
+            <md-input-container flex="85">
+                            <h2 class="md-body-2">{{answer.answer}}</h2>
             </md-input-container>
             <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
         </div>
+        <md-divider></md-divider>
     </li>
 </ul>
+<md-content>
+    <h3 class="md-body-2">Number of answers: {{numberOfAnswers(query)}}</h3>
+</md-content>

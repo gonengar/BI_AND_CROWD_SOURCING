@@ -70,8 +70,12 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         };
 
         $scope.showUserAnswer = function (query) {
-            return Object.keys(query.answers).length < query.responders || $scope.hasUserAnswered(query);
+            return $scope.numberOfAnswers(query) < query.responders || $scope.hasUserAnswered(query);
 
+        };
+
+        $scope.numberOfAnswers = function(query) {
+            return Object.keys(query.answers).length
         };
 
         $scope.hasUserAnswered = function(query){

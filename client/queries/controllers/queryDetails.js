@@ -2,6 +2,8 @@ angular.module("socially").controller("QueryDetailsCtrl", ['$scope', '$statePara
     function ($scope, $stateParams, $meteor) {
         $scope.query = $meteor.object(Queries, $stateParams.queryId).subscribe('queries');
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+        $scope.newQuestion = $scope.query.question;
+
         $scope.putSelection = function (chart) {
             chart.getChart().setSelection($scope.query.selectedObjects);
         };
@@ -12,6 +14,10 @@ angular.module("socially").controller("QueryDetailsCtrl", ['$scope', '$statePara
         $scope.rephrase = function () {
             $scope.query.question = $scope.newQuestion;
             $scope.query.answers = {};
+        };
+
+        $scope.numberOfAnswers = function() {
+            return Object.keys($scope.query.answers).length;
         };
 
         $scope.hasAnswers = function() {
