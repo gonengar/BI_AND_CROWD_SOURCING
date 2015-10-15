@@ -11,7 +11,7 @@
                         </md-input-container>
                         <div layout="row" layout-align="end center">
                             <md-button class="md-accent" ng-click="remove(query)">Remove</md-button>
-                            <md-button href="/queries/{{query._id}}">Details</md-button>
+                            <md-button ng-click="openDetails($event, query)">Details</md-button>
                         </div>
                     </div>
                 </md-list-item>

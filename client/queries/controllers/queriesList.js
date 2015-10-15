@@ -104,6 +104,16 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             });
         };
 
+        $scope.openDetails = function($event ,query){
+            var detailsScope = $scope.$new();
+            detailsScope.query = query;
+            $mdBottomSheet.show({
+                template: '<query-details query="query"></query-details>',
+                targetEvent: $event,
+                scope: detailsScope
+            });
+        };
+
         $scope.saveQuery = function (query, answer) {
             var answerWithFeedback = {
                 answer: answer,
