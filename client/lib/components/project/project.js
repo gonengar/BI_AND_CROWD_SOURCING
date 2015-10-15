@@ -5,13 +5,14 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
         link: function (scope) {
             var queries = $meteor.collection(Queries).subscribe('queries');
             scope.addSelectionObject = selectorService.addObject;
+            scope.responders = 1;
             scope.showConfirm = function (ev) {
                 var confirm = $mdDialog.confirm()
                     .parent(angular.element(document.body))
                     .title('Would you like to query the data?')
-                    .content('The selected range ' + selectorService.getSelectedObjects() + ' will be sent to the server for investigation')
-                    .ok('Please do it!')
-                    .cancel('Sounds like a scam')
+                    .content('The selected range will be sent to the server for investigation')
+                    .ok('OK')
+                    .cancel('Cancel')
                     .targetEvent(ev);
 
                 $mdDialog.show(confirm).then(function () {

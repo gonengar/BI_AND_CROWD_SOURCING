@@ -3,9 +3,10 @@ angular.module('socially').directive('graph', function ($parse) {
         restrict: 'E',
         templateUrl: 'client/lib/components/graph/graph.ng.html',
         link: function (scope, elem, attrs) {
-            scope.readyCb = $parse(attrs.readyCb);
+            var selectedObjects = $parse(attrs.selectedObjects)(scope);
+
             scope.readyCbWrapper = function(chart) {
-                scope.readyCb(scope, { chart: chart});
+                chart.getChart().setSelection(selectedObjects);
             };
 
             scope.chartObject = {

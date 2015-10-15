@@ -5,9 +5,14 @@ angular.module('socially').directive('feedbackStars', function () {
         scope: {
             answer: '='
         },
-        link: function (scope) {
+        link: function (scope, element, attributes) {
+
+            var isDisabled = attributes.isDisabled;
+
             scope.setFeedback = function (userFeedback) {
-                scope.answer.feedback = userFeedback;
+                if (!isDisabled) {
+                    scope.answer.feedback = userFeedback;
+                }
             };
 
             scope.feedbackStar = function (starNumber) {

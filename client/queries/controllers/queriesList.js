@@ -1,5 +1,5 @@
-angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '$mdDialog',
-    function ($scope, $meteor) {
+angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '$mdBottomSheet',
+    function ($scope, $meteor, $mdBottomSheet) {
 
         $scope.answer = '';
 
@@ -55,39 +55,62 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             $scope.currentUserQueries.remove();
         };
 
-        $scope.userAnswer = function(query){
-            var answer =  query.answers[$scope.userId()];
-            if (angular.isUndefined(answer)){
+        $scope.userAnswer = function (query) {
+            var answer = query.answers[$scope.userId()];
+            if (angular.isUndefined(answer)) {
                 return '';
             }
-            else
-            {
-                return answer.answer;
+            else {
+                return answer;
             }
         };
 
-        $scope.showUserAnswer = function(query) {
-            return angular.isDefined($scope.userAnswer(query));
+        $scope.showUserAnswer = function (query) {
+            return angular.isDefined($scope.userAnswer(query).answer);
         };
 
-        $scope.showUserAnswer = function(query){
-            return Object.keys(query.answers).length < query.responders || angular.isDefined(query.answers[Meteor.userId()]);
+        $scope.showUserAnswer = function (query) {
+            return Object.keys(query.answers).length < query.responders || $scope.hasUserAnswered(query);
 
         };
 
-        $scope.saveQuery = function(query, answer){
+        $scope.hasUserAnswered = function(query){
+            return angular.isDefined(query.answers[Meteor.userId()])
+        };
+
+        $scope.createQuery = function ($event) {
+            $mdBottomSheet.show({
+                template: '<md-bottom-sheet><project></project></md-bottom-sheet>',
+                targetEvent: $event
+            });
+        };
+
+        $scope.openGraph = function ($event, selectedObjects, query) {
+
+            var graphScope = $scope.$new();
+            graphScope.query = query;
+            graphScope.selectedObjects = selectedObjects;
+            var answerTemplate = '<div><md-input-container><label>Answer:{{userAnswer(query).answer}}</label> <input ng-model="answer"> </md-input-container> <md-button ng-click="saveQuery(query, answer)" class="md-primary">Save</md-button> </div>'
+            var graphTemplate = '<graph selected-objects="selectedObjects"></graph>';
+            var totalTemplate = '<md-bottom-sheet>' + graphTemplate + answerTemplate + '</md-bottom-sheet>';
+            $mdBottomSheet.show({
+                template: totalTemplate,
+                targetEvent: $event,
+                scope: graphScope
+            });
+        };
+
+        $scope.saveQuery = function (query, answer) {
             var answerWithFeedback = {
-              answer : answer,
-                feedback : 0
+                answer: answer,
+                feedback: 0
             };
 
-            //query.answers[$scope.userId()] = answerWithFeedback;
-            //$meteor.call('saveAnswer', query, answerWithFeedback, $scope.userId());
-            $meteor.call('date').then(function(date){
+            $meteor.call('date').then(function (date) {
                 answerWithFeedback.answerDate = date;
                 query.answers[$scope.userId()] = answerWithFeedback;
             });
         };
-}]);
+    }]);
 
 

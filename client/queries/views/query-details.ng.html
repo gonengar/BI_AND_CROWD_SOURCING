@@ -1,19 +1,22 @@
-Query: {{query.question}}
+<div class="md-title">Query: {{query.question}}</div>
 <div layout="row">
-    <md-input-container flex>
+    <md-input-container flex="50">
         <label>Rephrase Question?</label>
         <input ng-model="newQuestion" md-detect-hidden="true" md-no-autogrow="true">
     </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="rephrase()">OK</md-button>
+    <md-button class="md-primary" ng-click="rephrase()">OK</md-button>
 </div>
 
-<graph ready-cb="putSelection(chart)"></graph>
+<graph selected-objects="query.selectedObjects"></graph>
 Number Of Required Responders: {{query.responders}}
 <ul>
-    <div ng-show="hasAnswers()">Answers:</div>
-    <li ng-repeat="answer in query.answers" layout="column">
+    <div ng-show="hasAnswers()" class="md-list-item-text"><h3>Answers:</h3></div>
+    <li ng-repeat="answer in query.answers" layout="column" flex="50">
         <div layout="row">
-            <div>{{ answer.answer }}</div>
+            <md-input-container flex="90">
+                            <textarea disabled
+                                      style="color:black">{{answer.answer}}</textarea>
+            </md-input-container>
             <feedback-stars answer="answer" ng-show="isUserQuery(query.owner)"></feedback-stars>
         </div>
     </li>

@@ -1,44 +1,52 @@
-<project></project>
 <md-content layout="row" class="md-padding">
-    <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="User Queries">
+    <md-tabs md-dynamic-height md-border-bottom flex="50">
+        <md-tab label="My Queries">
+            <md-button class="md-primary" ng-click="createQuery($event)">Create Query</md-button>
             <md-list>
-                <md-toolbar class="md-theme-light">
-                    <h3 class="md-toolbar-tools">
-                        <span> Number of queries sent: {{currentUserQueries.length}}</span>
-                    </h3>
-                </md-toolbar>
                 <md-list-item class="md-3-line" ng-repeat="query in currentUserQueries">
-                    <div class="md-list-item-text" layout="row">
-                        <md-button class="md-raised md-warn" ng-click="remove(query)">Remove</md-button>
-                        <h3>{{query.question || "No question description was inserted"}}</h3>
-                        <md-button href="/queries/{{query._id}}">link</md-button>
-                    </div>
-                </md-list-item>
-            </md-list>
-        </md-tab>
-        <md-tab label="Other Users Queries">
-            <md-list>
-                <md-toolbar class="md-theme-light">
-                    <h3 class="md-toolbar-tools">
-                        <span> Number of queries sent by other users: {{otherUserQueries.length}}</span>
-                    </h3>
-                </md-toolbar>
-                <md-list-item class="md-3-line" ng-repeat="query in otherUserQueries">
-                    <div class="md-list-item-text" layout="row">
-                        <h3>{{query.question || "No question description was inserted"}}</h3>
-                        <md-button href="/queries/{{query._id}}">link</md-button>
-                        <!--<md-button  ng-click="showAnswer($event, query)" class="md-raised md-primary">Answer</md-button>-->
-                        <div ng-show="showUserAnswer(query)">
-                        <md-input-container>
-                            <label>Answer:{{userAnswer(query)}}</label>
-                            <input ng-model="answer">
+                    <div class="md-list-item-text" layout="column">
+                        <md-input-container style="width:90%">
+                            <textarea disabled
+                                      style="color:black">{{query.question || "No question description was inserted"}}</textarea>
                         </md-input-container>
-                        <md-button ng-click="saveQuery(query, answer)" class="md-raised md-primary">Save</md-button>
+                        <div layout="row" layout-align="end center">
+                            <md-button class="md-accent" ng-click="remove(query)">Remove</md-button>
+                            <md-button href="/queries/{{query._id}}">Details</md-button>
                         </div>
                     </div>
                 </md-list-item>
             </md-list>
+            <md-divider></md-divider>
+            <md-content>
+                <h3 class="md-body-2">Number of queries sent: {{currentUserQueries.length}}</h3>
+            </md-content>
+        </md-tab>
+        <md-tab label="Other Users Queries">
+            <div ng-repeat="query in otherUserQueries" ng-show="showUserAnswer(query)"
+                 class="md-whiteframe-1dp md-body-1">
+                <div layout="column">
+                    <h3>{{query.question}}</h3>
+                    <div layout="row" layout-align="end center">
+                        <div ng-if="hasUserAnswered(query)" layout="column" flex="85">
+                            <div layout="row"><h3>My Answer:&nbsp;</h3>
+
+                                <h3 style="font-weight: normal;
+">{{userAnswer(query).answer}}</h3></div>
+                            <div layout="row">&nbsp;&nbsp;&nbsp;
+                                <feedback-stars is-disabled="true" answer="userAnswer(query)"></feedback-stars>
+                            </div>
+                        </div>
+                        <div layout-align="end end">
+                            <md-button class="md-primary"
+                                       ng-click="openGraph($event, query.selectedObjects, query)">Respond
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-content>
+                <h3 class="md-body-2">Number of queries sent by other users: {{otherUserQueries.length}}</h3>
+            </md-content>
         </md-tab>
     </md-tabs>
 </md-content>
