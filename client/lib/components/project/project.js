@@ -1,10 +1,10 @@
-angular.module('socially').directive('project', function (selectorService, $mdDialog, $meteor) {
+angular.module('socially').directive('project', function ($mdDialog, $meteor, selectorService) {
     return {
         restrict: 'E',
         templateUrl: 'client/lib/components/project/project.ng.html',
         link: function (scope) {
+            scope.graphInfo = 'Sales';
             var queries = $meteor.collection(Queries).subscribe('queries');
-            scope.addSelectionObject = selectorService.addObject;
             scope.responders = 1;
             scope.showConfirm = function (ev) {
                 var confirm = $mdDialog.confirm()
@@ -21,7 +21,8 @@ angular.module('socially').directive('project', function (selectorService, $mdDi
                         question: scope.question,
                         owner: Meteor.userId(),
                         responders: scope.responders || 0,
-                        answers: {}
+                        answers: {},
+                        graphInfo:scope.graphInfo
                     };
 
                     $meteor.call('saveQuery', query);

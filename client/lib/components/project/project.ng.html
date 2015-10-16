@@ -1,4 +1,8 @@
 <h2 class="md-title">Create Query</h2>
+<md-input-container>
+    <label>Information</label>
+<md-select ng-model="graphInfo" flex="10"><md-option ng-repeat="info in ['Sales', 'Income']" value="{{info}}">{{info}}</md-option></md-select>
+</md-input-container>
 <md-input-container flex="70">
     <label>Question</label>
     <input ng-model="question">
@@ -10,7 +14,7 @@
     </md-select>
 </md-input-container>
 <div layout-align="center center">
-<graph></graph>
+<graph info="graphInfo"></graph>
 </div>
 <div layout="row" layout-align="end center">
 <md-button layout="row" layout-align="end center" ng-disabled="isDisabled()" ng-click="showConfirm($event)" class="md-raised md-primary">Query Data</md-button>

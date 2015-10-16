@@ -7,6 +7,10 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             return Meteor.userId();
         };
 
+        $scope.userDepartment = function(){
+          return Meteor.user().profile.userDepartment;
+        };
+
         $scope.$meteorSubscribe('queries').then(function () {
             $scope.currentUserQueries = $meteor.collection(function () {
                 return Queries.find({
@@ -94,8 +98,9 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             var graphScope = $scope.$new();
             graphScope.query = query;
             graphScope.selectedObjects = selectedObjects;
+            graphScope.graphInfo = query.graphInfo;
             var answerTemplate = '<div><md-input-container><label>Answer:{{userAnswer(query).answer}}</label> <input ng-model="answer"> </md-input-container> <md-button ng-click="saveQuery(query, answer)" class="md-primary">Save</md-button> </div>'
-            var graphTemplate = '<graph selected-objects="selectedObjects"></graph>';
+            var graphTemplate = '<graph selected-objects="selectedObjects" info="graphInfo"></graph>';
             var totalTemplate = '<md-bottom-sheet>' + graphTemplate + answerTemplate + '</md-bottom-sheet>';
             $mdBottomSheet.show({
                 template: totalTemplate,
