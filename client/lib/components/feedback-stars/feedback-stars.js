@@ -17,10 +17,10 @@ angular.module('socially').directive('feedbackStars', function () {
 
             scope.feedbackStar = function (starNumber) {
                 if (scope.answer.feedback < starNumber) {
-                    return 'fa fa-star-o';
+                    return 'fa fa-star-o fa-lg';
                 }
                 else {
-                    return 'fa fa-star';
+                    return 'fa fa-star fa-lg';
                 }
             }
         }

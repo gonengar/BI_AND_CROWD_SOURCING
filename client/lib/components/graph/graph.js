@@ -15,8 +15,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
 
             };
 
-            //var type = $parse(attrs.info)(scope);
-
             var chartObjects = {
                 Income: {
                     departments: ['HR', 'SALES']

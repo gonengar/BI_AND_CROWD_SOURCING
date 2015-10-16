@@ -69,13 +69,19 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             }
         };
 
-        $scope.showUserAnswer = function (query) {
-            return angular.isDefined($scope.userAnswer(query).answer);
+        var queryInvolvesUserDepartment = function(query){
+            var userDepartment = $scope.userDepartment();
+            var isDepartmentInvolved = false;
+            angular.forEach(query.departments, function(department){
+                if (userDepartment === department){
+                    isDepartmentInvolved = true;
+                }
+            });
+            return isDepartmentInvolved;
         };
 
         $scope.showUserAnswer = function (query) {
-            return $scope.numberOfAnswers(query) < query.responders || $scope.hasUserAnswered(query);
-
+            return ($scope.numberOfAnswers(query) < query.responders && queryInvolvesUserDepartment(query) )|| $scope.hasUserAnswered(query);
         };
 
         $scope.numberOfAnswers = function(query) {

@@ -5,9 +5,6 @@
 <body>
 <div ng-app="socially">
     <meteor-include src="loginButtons"></meteor-include>
-        <h1>
-        <md-button class="md-primary md-raised" href="/queries">Home</md-button>
-    </h1>
-    <div ui-view></div>
+    <div ng-if="currentUser" ui-view></div>
 </div>
 </body>

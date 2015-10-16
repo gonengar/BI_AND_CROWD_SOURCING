@@ -9,7 +9,7 @@
     </form>
     </md-content>
 <h2 class="md-body-2">Number Of Required Responders: {{query.responders}}</h2>
-<graph selected-objects="query.selectedObjects"></graph>
+<graph selected-objects="query.selectedObjects" info="query.graphInfo"></graph>
 <ul>
     <div ng-show="hasAnswers()" class="md-list-item-text"><h3>Answers:</h3></div>
     <li ng-repeat="answer in query.answers" layout="column" flex="70">

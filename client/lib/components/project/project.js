@@ -16,13 +16,22 @@ angular.module('socially').directive('project', function ($mdDialog, $meteor, se
                     .targetEvent(ev);
 
                 $mdDialog.show(confirm).then(function () {
+                    var departments;
+                    if (scope.graphInfo === 'Income'){
+                        departments = ['HR', 'Sales'];
+                    }
+                    else
+                    if (scope.graphInfo === 'Sales'){
+                        departments = ['IT', 'Sales'];
+                    }
                     var query = {
                         selectedObjects: selectorService.getSelectedObjects(),
                         question: scope.question,
                         owner: Meteor.userId(),
                         responders: scope.responders || 0,
                         answers: {},
-                        graphInfo:scope.graphInfo
+                        graphInfo: scope.graphInfo,
+                        departments: departments
                     };
 
                     $meteor.call('saveQuery', query);
