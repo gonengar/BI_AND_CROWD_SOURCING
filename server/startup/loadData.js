@@ -28,37 +28,14 @@ Meteor.startup(function () {
     }
 });
 
-//
-//Meteor.startup(function () {
-//    if (UsersExtraDetails.find().count() === 0) {
-//        var users = Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
-//        for (var i = 0; i < users.length; i++) {
-//            var user = users[i];
-//            var userDepartment;
-//            if (user.userName.startWith('h')) {
-//                userDepartment = 'HR';
-//            }
-//            else {
-//                if (user.username.startsWith('s')) {
-//                    userDepartment = 'Sales';
-//                }
-//                else {
-//                    if (user.username.startsWith('i'))
-//                        userDepartment = 'IT';
-//                }
-//            }
-//            UsersExtraDetails.insert({userId: user._id, department: userDepartment});
-//        }
-//    }
-//});
-
-
 Meteor.startup(function () {
     var users = Meteor.users.find({}).fetch();
     for (var i = 0; i < users.length; i++) {
         var user = users[i];
         user.profile = user.profile || {};
-        user.emails[0].userDepartment = 1;
+        user.profile.numberOfAnswers = user.profile.numberOfAnswers || 0;
+        user.profile.averageFeedback = user.profile.averageFeedback || 0;
+        user.profile.averageAnswerTime = user.profile.averageAnswerTime || 0;
         var userAddress = user.emails[0].address;
         if (userAddress.indexOf('h') === 0) {
             user.profile.userDepartment = 'HR';
@@ -72,10 +49,15 @@ Meteor.startup(function () {
                     user.profile.userDepartment = 'IT';
                 }
                 else {
-                    user.profile.userDepartment = 'irrelevant';
+                    if (userAddress.indexOf('c') === 0) {
+                        user.profile.userDepartment = 'CEO';
+                    }
+                    else {
+                        user.profile.userDepartment = 'irrelevant';
+                    }
                 }
             }
+            Meteor.users.update({_id: user._id}, user);
         }
-        Meteor.users.update({_id : user._id}, user);
     }
 });

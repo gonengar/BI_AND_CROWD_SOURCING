@@ -94,7 +94,7 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
 
         $scope.createQuery = function ($event) {
             $mdBottomSheet.show({
-                template: '<md-bottom-sheet><project></project></md-bottom-sheet>',
+                template: '<md-bottom-sheet><graph-menu></graph-menu></md-bottom-sheet>',
                 targetEvent: $event
             });
         };
@@ -118,8 +118,9 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         $scope.openDetails = function($event ,query){
             var detailsScope = $scope.$new();
             detailsScope.query = query;
+            detailsScope.queries = $scope.currentUserQueries;
             $mdBottomSheet.show({
-                template: '<query-details query="query"></query-details>',
+                template: '<query-details query="query" queries="queries"></query-details>',
                 targetEvent: $event,
                 scope: detailsScope
             });

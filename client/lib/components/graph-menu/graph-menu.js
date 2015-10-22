@@ -1,7 +1,7 @@
-angular.module('socially').directive('project', function ($mdDialog, $meteor, selectorService) {
+angular.module('socially').directive('graphMenu', function ($mdDialog, $meteor, selectorService, $mdBottomSheet) {
     return {
         restrict: 'E',
-        templateUrl: 'client/lib/components/project/project.ng.html',
+        templateUrl: 'client/lib/components/graph-menu/graph-menu.ng.html',
         link: function (scope) {
             scope.graphInfo = 'Sales';
             var queries = $meteor.collection(Queries).subscribe('queries');
@@ -35,7 +35,7 @@ angular.module('socially').directive('project', function ($mdDialog, $meteor, se
                     };
 
                     $meteor.call('saveQuery', query);
-                }, function () {
+                    $mdBottomSheet.hide();
                 })
             };
 
