@@ -11,6 +11,18 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
           return Meteor.user().profile.userDepartment;
         };
 
+        $scope.userFeedback = function(){
+         return Meteor.user().profile.averageFeedback.toFixed(1);
+        };
+
+        $scope.userResponseTime = function(){
+            return Meteor.user().profile.averageAnswerTime.toFixed(1);
+        };
+
+        $scope.userNumberOfQueries = function(){
+            return Meteor.user().profile.numberOfAnswers;
+        };
+
         $scope.$meteorSubscribe('queries').then(function () {
             $scope.currentUserQueries = $meteor.collection(function () {
                 return Queries.find({

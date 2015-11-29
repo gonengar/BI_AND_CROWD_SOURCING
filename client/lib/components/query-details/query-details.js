@@ -27,7 +27,7 @@ angular.module("socially").directive('queryDetails', function ($meteor, $mdBotto
                 $mdBottomSheet.hide();
                 angular.forEach($scope.query.answers, function(answer, userId){
                     var answerTimeDiffMs = answer.answerDate - $scope.query.createDate;
-                    var answerTimeDiffMins = Math.round(((answerTimeDiffMs % 86400000) % 3600000) / 60000);
+                    var answerTimeDiffMins = ((answerTimeDiffMs % 86400000) % 3600000) / 60000;
                     $meteor.call('saveAnswerProperties', userId, answer.feedback, answerTimeDiffMins);
                 });
                 $scope.queries.splice($scope.queries.indexOf($scope.query), 1);

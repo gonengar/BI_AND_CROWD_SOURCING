@@ -26,10 +26,12 @@
                  class="md-whiteframe-1dp md-body-2">
                 <div layout="column">
                     <h3>{{query.question}}</h3>
+
                     <div layout="row" layout-align="end center">
                         <div ng-if="hasUserAnswered(query)" layout="column" flex>
                             <div layout="row">
                                 <h3>My Answer:&nbsp;</h3>
+
                                 <h3 style="font-weight: normal">{{userAnswer(query).answer}}</h3>
                             </div>
                             <div layout="row">&nbsp;&nbsp;&nbsp;
@@ -50,5 +52,21 @@
         </md-tab>
     </md-tabs>
 </md-content>
+<div layout="column">
+    <div class="md-title">User Stats:</div>
+    <div class="md-body-1">Feedback:&nbsp; {{userFeedback()}}</div>
+    <div class="md-body-1">Response Time:&nbsp;{{userResponseTime()}}</div>
+    <div class="md-body-1">#Answers:&nbsp;{{userNumberOfQueries()}}</div>
+</div>
 <div class="md-title">{{userDepartment()}} Department</div>
 
+<!--Feedback:<br>-->
+<!--Response Time:<br>-->
+<!--#Queries: <br></md-content>-->
+<!--<md-content>-->
+<!--<br>-->
+<!--<br>-->
+<!--{{userResponseTime()}}<br>-->
+<!--{{userNumberOfQueries()}}<br>-->
+<!--</md-content>-->
+<!--</div>-->
