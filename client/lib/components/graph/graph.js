@@ -46,11 +46,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                 "label": "Server",
                                 "type": "number",
                                 "p": {}
-                            },
-                            {
-                                "id": "cost-id",
-                                "label": "Shipping",
-                                "type": "number"
                             }
                         ],
                         "rows": [
@@ -61,29 +56,16 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                         "p": {}
                                     },
                                     {
-                                        "v": 19,
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"80\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_w.png\" height=\"12\" width=\"20\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 42 items</span> ",
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-empty",
-                                            "_bar_format_old_value": "42 items"
-                                        }
-                                    },
-                                    {
-                                        "v": 30,
-                                        "f": "Ony 12 items",
+                                        "v": 10000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 7,
-                                        "f": "7 servers",
+                                        "v": 12000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 4,
-                                        "p": {
-                                            "style": "color:white;background-color:#800080;"
-                                        },
-                                        "f": "$4,00"
+                                        "v": 14000,
+                                        "p": {}
                                     },
                                     null
                                 ]
@@ -95,28 +77,16 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                         "p": {}
                                     },
                                     {
-                                        "v": 13,
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-dr",
-                                            "_bar_format_old_value": "13"
-                                        },
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"55\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_w.png\" height=\"12\" width=\"45\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 13</span> "
-                                    },
-                                    {
-                                        "v": 1,
-                                        "f": "1 unit (Out of stock this month)",
+                                        "v": 11000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 30,
+                                        "v": 14000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 2,
-                                        "p": {
-                                            "style": "color:white;background-color:red;"
-                                        },
-                                        "f": "$2,00"
+                                        "v": 12000,
+                                        "p": {}
                                     },
                                     null
                                 ]
@@ -128,27 +98,16 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                         "p": {}
                                     },
                                     {
-                                        "v": 24,
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-ug",
-                                            "_bar_format_old_value": "24"
-                                        },
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"100\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 24</span> "
-                                    },
-                                    {
-                                        "v": 5,
+                                        "v": 15000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 11,
+                                        "v": 9000,
                                         "p": {}
                                     },
                                     {
-                                        "v": 6,
-                                        "p": {
-                                            "style": "color:black;background-color:#33ff33;"
-                                        },
-                                        "f": "$6,00"
+                                        "v": 8000,
+                                        "p": {}
                                     },
                                     null
                                 ]
@@ -156,11 +115,11 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                         ]
                     },
                     "options": {
-                        "title": "Sales per SASSSSSSSS",
+                        "title": "Income per month",
                         "fill": 20,
                         "displayExactValues": true,
                         "vAxis": {
-                            "title": "Sales unit",
+                            "title": "Income",
                             "gridlines": {
                                 "count": 10
                             }
@@ -169,7 +128,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                         "hAxis": {
                             "title": "Date"
                         },
-                        "allowHtml": true,
                         "tooltip": {
                             "isHtml": false
                         }
@@ -215,14 +173,16 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                         ],
                         "number": [
                             {
-                                "columnNum": 4,
-                                "prefix": "$"
-                            }
-                        ],
-                        "bar": [
-                            {
                                 "columnNum": 1,
-                                "width": 100
+                                "prefix": "$"
+                            },
+                            {
+                                "columnNum": 2,
+                                "prefix": "$"
+                            },
+                            {
+                                "columnNum": 3,
+                                "prefix": "$"
                             }
                         ]
                     },
@@ -258,11 +218,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                 "label": "Server",
                                 "type": "number",
                                 "p": {}
-                            },
-                            {
-                                "id": "cost-id",
-                                "label": "Shipping",
-                                "type": "number"
                             }
                         ],
                         "rows": [
@@ -274,28 +229,15 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                     },
                                     {
                                         "v": 19,
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"80\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_w.png\" height=\"12\" width=\"20\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 42 items</span> ",
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-empty",
-                                            "_bar_format_old_value": "42 items"
-                                        }
+                                        "p": {}
                                     },
                                     {
-                                        "v": 12,
-                                        "f": "Ony 12 items",
+                                        "v": 30,
                                         "p": {}
                                     },
                                     {
                                         "v": 7,
-                                        "f": "7 servers",
                                         "p": {}
-                                    },
-                                    {
-                                        "v": 4,
-                                        "p": {
-                                            "style": "color:white;background-color:#800080;"
-                                        },
-                                        "f": "$4,00"
                                     },
                                     null
                                 ]
@@ -308,27 +250,15 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                     },
                                     {
                                         "v": 13,
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-dr",
-                                            "_bar_format_old_value": "13"
-                                        },
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"55\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_w.png\" height=\"12\" width=\"45\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 13</span> "
+                                        "p": {}
                                     },
                                     {
                                         "v": 1,
-                                        "f": "1 unit (Out of stock this month)",
                                         "p": {}
                                     },
                                     {
                                         "v": 30,
                                         "p": {}
-                                    },
-                                    {
-                                        "v": 2,
-                                        "p": {
-                                            "style": "color:white;background-color:red;"
-                                        },
-                                        "f": "$2,00"
                                     },
                                     null
                                 ]
@@ -341,11 +271,7 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                     },
                                     {
                                         "v": 24,
-                                        "p": {
-                                            "className": "google-visualization-formatters-arrow-ug",
-                                            "_bar_format_old_value": "24"
-                                        },
-                                        "f": "<span style=\"padding: 0; float: left; white-space: nowrap;\"><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_b.png\" height=\"12\" width=\"100\" /><img style=\"padding: 0\" src=\"https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/util/bar_s.png\" height=\"12\" width=\"1\" /> 24</span> "
+                                        "p": {}
                                     },
                                     {
                                         "v": 5,
@@ -354,13 +280,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                                     {
                                         "v": 11,
                                         "p": {}
-                                    },
-                                    {
-                                        "v": 6,
-                                        "p": {
-                                            "style": "color:black;background-color:#33ff33;"
-                                        },
-                                        "f": "$6,00"
                                     },
                                     null
                                 ]
@@ -381,7 +300,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                         "hAxis": {
                             "title": "Date"
                         },
-                        "allowHtml": true,
                         "tooltip": {
                             "isHtml": false
                         }
@@ -429,12 +347,6 @@ angular.module('socially').directive('graph', function ($parse, selectorService)
                             {
                                 "columnNum": 4,
                                 "prefix": "$"
-                            }
-                        ],
-                        "bar": [
-                            {
-                                "columnNum": 1,
-                                "width": 100
                             }
                         ]
                     },
