@@ -1,10 +1,27 @@
-angular.module('socially').directive('graphMenu', function ($mdDialog, $meteor, selectorService, $mdBottomSheet) {
+angular.module('socially').directive('graphMenu', function ($interval, $mdDialog, $meteor, selectorService, $mdBottomSheet) {
     return {
         restrict: 'E',
         templateUrl: 'client/lib/components/graph-menu/graph-menu.ng.html',
         link: function (scope) {
             scope.graphInfo = 'Sales';
-            var queries = $meteor.collection(Queries).subscribe('queries');
+            Meteor.subscribe('users');
+
+            var getTopUsers = function (numOfUsers, departments) {
+
+
+                var users = Meteor.users.find(
+                    {'profile.userDepartment': {$in: departments}}, {
+                        sort: [["profile.grade", "desc"]],
+                        limit: parseInt(numOfUsers)
+                    });
+
+                var topUsers = [];
+                users.forEach(function (entry) {
+                    topUsers.push(entry._id);
+                });
+
+                return topUsers;
+            };
             scope.responders = 1;
             scope.showConfirm = function (ev) {
                 var confirm = $mdDialog.confirm()
@@ -17,11 +34,10 @@ angular.module('socially').directive('graphMenu', function ($mdDialog, $meteor, 
 
                 $mdDialog.show(confirm).then(function () {
                     var departments;
-                    if (scope.graphInfo === 'Income'){
+                    if (scope.graphInfo === 'Income') {
                         departments = ['HR', 'Sales'];
                     }
-                    else
-                    if (scope.graphInfo === 'Sales'){
+                    else if (scope.graphInfo === 'Sales') {
                         departments = ['IT', 'Sales'];
                     }
                     var query = {
@@ -31,7 +47,8 @@ angular.module('socially').directive('graphMenu', function ($mdDialog, $meteor, 
                         responders: scope.responders || 0,
                         answers: {},
                         graphInfo: scope.graphInfo,
-                        departments: departments
+                        departments: departments,
+                        users: getTopUsers(scope.responders, departments)
                     };
 
                     $meteor.call('saveQuery', query);

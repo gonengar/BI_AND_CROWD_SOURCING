@@ -30,6 +30,8 @@ angular.module("socially").directive('queryDetails', function ($meteor, $mdBotto
                     var answerTimeDiffMins = ((answerTimeDiffMs % 86400000) % 3600000) / 60000;
                     $meteor.call('saveAnswerProperties', userId, answer.feedback, answerTimeDiffMins);
                 });
+                //Remove user's load
+                $meteor.call('decrementUsersLoad', $scope.query.users);
                 $scope.queries.splice($scope.queries.indexOf($scope.query), 1);
             };
 

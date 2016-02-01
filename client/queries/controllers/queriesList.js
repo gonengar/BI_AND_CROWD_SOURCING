@@ -19,9 +19,30 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
             return Meteor.user().profile.averageAnswerTime.toFixed(1);
         };
 
+        $scope.userGrade = function(){
+            return Meteor.user().profile.grade.toFixed(1);
+        };
+
         $scope.userNumberOfQueries = function(){
             return Meteor.user().profile.numberOfAnswers;
         };
+
+        $scope.userLoad = function(){
+            var counter = 0;
+            if ($scope.otherUserQueries == undefined){
+                return counter;
+            }
+            $scope.otherUserQueries.forEach(function(query){
+                query.users.forEach(function(userId){
+                    if (userId == Meteor.userId()){
+                        counter++;
+                    }
+                });
+            });
+
+            return counter;
+        };
+
 
         $scope.$meteorSubscribe('queries').then(function () {
             $scope.currentUserQueries = $meteor.collection(function () {
@@ -64,6 +85,7 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         });
 
         $scope.remove = function (query) {
+            $meteor.call('decrementUsersLoad', query.users);
             $scope.currentUserQueries.splice($scope.currentUserQueries.indexOf(query), 1);
         };
 
@@ -93,7 +115,7 @@ angular.module("socially").controller("QueriesListCtrl", ['$scope', '$meteor', '
         };
 
         $scope.showUserAnswer = function (query) {
-            return ($scope.numberOfAnswers(query) < query.responders && queryInvolvesUserDepartment(query) )|| $scope.hasUserAnswered(query);
+            return query.users.includes(Meteor.userId());
         };
 
         $scope.numberOfAnswers = function(query) {

@@ -59,14 +59,19 @@
     <div class="md-body-1">#Answers:&nbsp;{{userNumberOfQueries()}}</div>
 </div>
 <div class="md-title">{{userDepartment()}} Department</div>
-
-<!--Feedback:<br>-->
-<!--Response Time:<br>-->
-<!--#Queries: <br></md-content>-->
-<!--<md-content>-->
-<!--<br>-->
-<!--<br>-->
-<!--{{userResponseTime()}}<br>-->
-<!--{{userNumberOfQueries()}}<br>-->
-<!--</md-content>-->
-<!--</div>-->
+<div layout="row">
+<md-content>
+Feedback:<br>
+Response Time:<br>
+Number of queries answered: <br>
+Load: <br>
+Grade: <br>
+</md-content>
+<md-content>
+{{userFeedback()}}<br>
+{{userResponseTime()}}<br>
+{{userNumberOfQueries()}}<br>
+{{userLoad()}}<br>
+{{userGrade()}}<br>
+</md-content>
+</div>

@@ -36,6 +36,8 @@ Meteor.startup(function () {
         user.profile.numberOfAnswers = user.profile.numberOfAnswers || 0;
         user.profile.averageFeedback = user.profile.averageFeedback || 0;
         user.profile.averageAnswerTime = user.profile.averageAnswerTime || 0;
+        user.profile.load = user.profile.load || 0;
+        user.profile.grade = user.profile.grade || 0;
         var userAddress = user.emails[0].address;
         if (userAddress.indexOf('h') === 0) {
             user.profile.userDepartment = 'HR';
@@ -57,7 +59,7 @@ Meteor.startup(function () {
                     }
                 }
             }
-            Meteor.users.update({_id: user._id}, user);
         }
+        Meteor.users.update({_id: user._id}, user);
     }
 });
